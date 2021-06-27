@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iRock</title>
+    <title>iRock - A rocha virtual de estimação</title>
+    <script type ="text/javascript">
+        function touchRock(){
+            var nomeUsuario = prompt("Qual o seu nome? Digite o seu nome aqui:");
+
+            if (nomeUsuario){
+                alert("Prazer em conhecer você, " + nomeUsuario + ".");
+                document.getElementById("rockImg").src = "rock_happy.png";
+            }
+        }
+    </script>
+
 </head>
-<body>
-    <h1>Olá mundo! Testando</h1>
+<body onload = "alert('Olá, eu sou a rocha de estimação');">
+    <div style = "margin-top: 100px; text-align: center;">
+        <img id = "rockImg" src = "rock.png" alt = "iRock" 
+        style = "cursor:pointer" onclick ="touchRock();"/>
 </body>
 </html>
