@@ -1,53 +1,48 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iRock - A rocha virtual de estimação</title>
-    <script src="cookie.js"></script>
-    <script>
-        var nomeUsuario
-        
-        function saudacao(){
-            if (navigator.cookieEnabled)
-                nomeUsuario = readCookie("irock_username");
-            if (nomeUsuario)
-                alert("Olá "+ nomeUsuario + ", senti sua falta.");
-            else
-                alert("Olá, eu sou a sua rocha de estimação");
-        }
+<html>
+    <head>
+        <title>iRock - A rocha virtual de estimação</title>
+        <script type="text/javascript" src="cookie.js"></script>
+        <script type="text/javascript">
+            var nomeUsuario;
 
-        function touchRock(){
-            if (nomeUsuario) {
-                alert("Eu gosto de atenção, "+ nomeUsuario +". Obrigada!")
+            function resizeRock() {
+                document.getElementById("rockImg").style.height = (document.body.clientHeight - 100) * 0.9;
             }
-            else {
-                nomeUsuario = prompt("Qual o seu nome? Digite o seu nome aqui:");
+
+            function saudacao() {
+                if (navigator.cookieEnabled)
+                    nomeUsuario = readCookie("irock_username");
+                if (nomeUsuario)
+                    alert("Olá " + nomeUsuario + ", senti sua falta.");
+                else
+                    alert("Olá, eu sou a sua rocha de estimação");
+            }
+
+            function touchRock() {
                 if (nomeUsuario) {
-                    alert("Que bom conhecer você, "+ nomeUsuario +".");
-                    if (navigator.cookieEnabled)
-                        writeCookie("irock_username", nomeUsuario, 5 * 365);
-                    else
-                        alert("O seu navegador não possui suporte a cookies");
+                    alert("Eu gosto de atenção, " + nomeUsuario + ". Obrigada!");
                 }
+                else {
+                    nomeUsuario = prompt("Qual o seu nome? Digite o seu nome aqui:");
+                    if (nomeUsuario) {
+                        alert("Que bom conhecer você, " + nomeUsuario + ".");
+                        document.getElementById("rockImg").src = "rock_happy.png";
+                        setTimeout("document.getElementById('rockImg').src = 'rock.png';", 5 * 60 * 1000);
+                        if (navigator.cookieEnabled)
+                            writeCookie("irock_username", nomeUsuario, 5 * 365);
+                        else
+                            alert("O seu navegador não possui suporte a cookies");
+                    }
+                }
+
             }
-            
-            document.getElementById("rockImg").src = "rock_happy.png";
-            setTimeout("document.getElementById('rockImg').src = 'rock.png';",20000)
-        }
+        </script>
+    </head>
 
-        function resizeRock() {
-            document.getElementById("rockImg").style.height = (document.body.clientHeight - 100) * 0.9;
-        }
+    <body onload="resizeRock(); saudacao();" onresize="resizeRock();">
+        <div style="margin-top: 100px; text-align: center;">
+            <img id="rockImg" src="rock.png" alt="iRock" style="cursor:pointer" onclick="touchRock();" />
+        </div>
+    </body>
 
-
-    </script>
-</head>
-<body onload="resizeRock(); saudacao();" onresize="resizeRock();">
-    <div style = "margin-top: 100px; text-align: center;">
-        <img id = "rockImg" src = "rock.png" alt = "iRock" 
-        style = "cursor:pointer" onclick ="touchRock();"/>
-    </div>
-</body>
 </html>
